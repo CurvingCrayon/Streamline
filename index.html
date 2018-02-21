@@ -2,12 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="jquery/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="mobileCheck.js"></script>
+    <script src="jquery/jquery-ui.min.js"></script>
+    <script src="parsley.min.js"></script>
     <script src="script.js"></script>
 </head>
-<body onload="init();">
+<body onload="init();" onresize="resize();">
     
     <div id="parallax">
         <img id="parImg" src="images/meeting.jpg" />
@@ -21,35 +25,34 @@
             <a class="link" href="contact.html"><div>
                 <h2 class="vCent">Contact Us</h2>
             </div></a>
-            <div id="enquiry">
-                <h2 id="makeEnquiry" class="vCent"><a href="enquiry.html">MAKE AN ENQUIRY</a></h2>
+            <div onclick="openEnquiry();" id="enquiry"  data-show="1">
+                <h2 id="makeEnquiry" class="vCent">MAKE AN ENQUIRY</h2>
             </div>
             
         </div>
         <div id="mainTile" class="tile">
-            <div id="logo" class="vCent">
+            <div id="logo" class="vCent" data-show="2">
                 <img src="images/logo.jpg" />
             </div>
             <div id="infoTable" class="vCent">
-                <div id="phrase" class="">
+                <div id="phrase">
                     <h1>For students. By students.</h1>
                 </div>
                 <div id="contact">
-                    <h3>0444 567 321 | streamline@gmail.com</h3>
+                    <h3>0450 811 778 | tutoring.streamline@gmail.com</h3>
                 </div>
             </div>
             
         </div>
-        <div class="tile white">
+        <div class="tile brown">
             <h2 class="tileHead">Quality tutoring, without the pricetag.</h2>
-            <div class="subject">
-            </div>
-            <div class="subject">
-            </div>
-            <div class="subject">
-            </div>
-            <div class="subject">
-            </div>
+        </div>
+        <div id="enquire" title="Make An Enquiry">
+            <form>
+                <input type="text" placeholder="Name" id="reqName" class="text ui-widget-content ui-corner-all"/>
+                <input type="text" placeholder="E-mail" id="reqEmail" class="text ui-widget-content ui-corner-all" />
+                <textarea id="reqText" class="text ui-widget-content ui-corner-all"></textarea>
+            </form>
         </div>
     </div>
     

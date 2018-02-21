@@ -2,6 +2,8 @@ body{
     margin: 0;
     height: 100%;
     color: #E89B5C;
+    font-family: "Nunito", Helvetica, Arial, sans-serif;
+    font-weight: 400;
 }
 html{
     height: 100%;
@@ -48,6 +50,13 @@ html{
     padding: 0px 10px 1px 10px;
     margin-bottom: 8px;
 }
+#phrase{
+    font-size: 2vw;
+}
+#phrase h1, #contact h3{
+    font-weight: 400;
+    margin: 0;
+}
 #contact{
     float: right;
     max-width: 85%;
@@ -82,7 +91,7 @@ html{
     text-align: center;
     padding: 15px 0 15px 0;
     margin-left: 10%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #E89B5C;
 }
 .subject{
     
@@ -127,7 +136,40 @@ a, a:active, a:hover{
     right: 15px;
 }
 #makeEnquiry{
+    margin: 0;
     color: #2A9D8F;
     font-size: 20px;
     border: 4px solid #2A9D8F;
+    cursor: pointer;
+    user-select: none;
+}
+.subject{
+    width: 20vw;
+    height: 20vw;
+    margin: 0 2vw 0 2vw;
+    display: inline-block;
+    border-radius: 100000000px;
+    box-shadow: 0 0 10px black;
+    background-size: cover;
+    overflow: hidden;
+    cursor: pointer;
+    vertical-align: top;
+    margin-top: 12vh;
+}
+.brown{
+    background-color: #3F292B;
+}
+.tile{
+    text-align: center;
+}
+.subjImage{
+    width: 100%;
+    height: 100%;
+}
+.subjTitle{
+    width: 100%;
+    position: relative;
+    margin-top: -4vw;
+    background-color: white;
+    font-size: 2vw;
 }
