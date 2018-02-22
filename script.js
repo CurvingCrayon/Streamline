@@ -1,6 +1,7 @@
 var prlx = {
     ratio: 0.2,
-    elem: false //initialized onload
+    elem: false, //initialized onload
+    images: ["meeting.jpg","desk.jpg"]
 }
 var screenSizes = [400,703];
 var currentSize = -1;
@@ -13,7 +14,6 @@ function init(){
     generateSubjects();
 }
 function sendRequest(){
-    
     $("#enquire").dialog("close");
 }
 function openEnquiry(){
@@ -42,6 +42,8 @@ function parallax(event){
     if(event.currentTarget === event.target){
         prlx.elem.scrollTop = prlx.ratio * event.target.scrollTop;
     }
+    var imgIndex = Math.round(Math.floor(event.target.scrollTop / window.innerHeight)/2);
+    prlx.elem.children[0].src = "images/"+prlx.images[imgIndex];
 }
 function resize(){
     updateSize();
@@ -59,7 +61,6 @@ function updateSize(){
 }
 function checkSize(){
     var width = document.body.offsetWidth;
-    console.log(width);
     var sizeIndex = -1;
     for(var size = 0; size < screenSizes.length; size++){
         if(width <= screenSizes[size]){
@@ -71,7 +72,6 @@ function checkSize(){
         sizeIndex = screenSizes.length;
     }
     currentSize = sizeIndex;
-    console.log(currentSize);
     return sizeIndex;
 }
 function generateSubjects(){
@@ -121,39 +121,40 @@ function tweenBlur(ele, startRadius, endRadius) {
     });
 }
 function hoverSubj(event){
-    if(event.currentTarget === event.target || event.target === event.currentTarget.children[0]){ //Dont execute when entering lable
-        $(event.currentTarget).stop();
-        $(event.currentTarget).animate({
-            "height": "23vw",
-            "width": "23vw",
-            "margin-left":"0.5vw",
-            "margin-right":"0.5vw"},
-           {
-            "duration":200
-        });
-        tweenBlur(event.currentTarget.children[0],0,10);
-        $(event.currentTarget.children[1]).stop()
-        $(event.currentTarget.children[1]).animate({
-            "margin-top": "-10vw"
-        },{"duration":200})
-        }
+    $(event.currentTarget).stop();
+    $(event.currentTarget).animate({
+        "height": "23vw",
+        "width": "23vw",
+        "margin-left":"0.5vw",
+        "margin-right":"0.5vw"},
+       {
+        "duration":200
+    });
+    //tweenBlur(event.currentTarget.children[0],0,10);
+    $(event.currentTarget.children[1]).stop()
+    $(event.currentTarget.children[1]).animate({
+        "margin-top": "-10vw"
+    },{"duration":200});
 }
-function unhoverSubj(){
-    console.log(event.currentTarget);
-    if(event.currentTarget === event.target || event.target === event.currentTarget.children[0]){ //Dont execute when leaving lable
-        $(event.currentTarget).stop();
-        $(event.currentTarget).animate({
-            "height": "20vw",
-            "width": "20vw",
-            "margin-left":"2vw",
-            "margin-right":"2vw"},
-           {
-            "duration":200
-        });
-        tweenBlur(event.currentTarget.children[0],10,0);
-        $(event.currentTarget.children[1]).stop();
-        $(event.currentTarget.children[1]).animate({
-            "margin-top": "-4vw"
-        },{"duration":200})
+function unhoverSubj(event){
+    //Credit to:
+    //https://stackoverflow.com/questions/4697758/prevent-onmouseout-when-hovering-child-element-of-the-parent-absolute-div-withou
+    var e = event.toElement || event.relatedTarget;
+    if (e.parentNode == this || e == this) {
+       return;
     }
+    $(event.currentTarget).stop();
+    $(event.currentTarget).animate({
+        "height": "20vw",
+        "width": "20vw",
+        "margin-left":"2vw",
+        "margin-right":"2vw"},
+       {
+        "duration":200
+    });
+    //tweenBlur(event.currentTarget.children[0],10,0);
+    $(event.currentTarget.children[1]).stop();
+    $(event.currentTarget.children[1]).animate({
+        "margin-top": "-4vw"
+    },{"duration":200});
 }

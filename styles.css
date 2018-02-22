@@ -90,7 +90,7 @@ html{
     width: 80%;
     text-align: center;
     padding: 15px 0 15px 0;
-    margin-left: 10%;
+    margin: 0 0 0 10%;
     border-bottom: 1px solid #E89B5C;
 }
 .subject{
@@ -161,6 +161,9 @@ a, a:active, a:hover{
 }
 .tile{
     text-align: center;
+}
+.noOverflow{
+    overflow: hidden;
 }
 .subjImage{
     width: 100%;
