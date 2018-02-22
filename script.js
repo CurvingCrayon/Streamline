@@ -7,11 +7,13 @@ var screenSizes = [400,703];
 var currentSize = -1;
 var maxSizes = 5;
 var subjects = ["Maths","English","Business","IPT"];
+var tutors = ["Aidan", "Will", "Eddie", "Hayden"];
 function init(){
     prlx.elem = document.getElementById("parallax");
     updateSize();
     ui();
     generateSubjects();
+    generateTutors();
 }
 function sendRequest(){
     $("#enquire").dialog("close");
@@ -43,7 +45,7 @@ function parallax(event){
         prlx.elem.scrollTop = prlx.ratio * event.target.scrollTop;
     }
     var imgIndex = Math.round(Math.floor(event.target.scrollTop / window.innerHeight)/2);
-    prlx.elem.children[0].src = "images/"+prlx.images[imgIndex];
+   // prlx.elem.children[0].src = "images/"+prlx.images[imgIndex];
 }
 function resize(){
     updateSize();
@@ -154,7 +156,37 @@ function unhoverSubj(event){
     });
     //tweenBlur(event.currentTarget.children[0],10,0);
     $(event.currentTarget.children[1]).stop();
+    var type = event.currentTarget.className;
     $(event.currentTarget.children[1]).animate({
-        "margin-top": "-4vw"
+        "margin-top": ((type === "subject")?"-4vw":"-3vw")
     },{"duration":200});
+}
+function hoverTutor(){
+    
+}
+function unhoverTutor(){
+    
+}
+function generateTutors(){ //Same code as generateSubjects
+    /*<div class="subject">
+                <img class="subjImage" />
+                <div class="subjTitle">Maths</div>
+            </div>*/
+    for(var tut = 0; tut < subjects.length; tut++){
+        var tutor = document.createElement("div");
+        var imgLink = "images/"+tutors[tut].toLowerCase()+".jpg";
+        var name = document.createElement("div");
+        tutor.className = "tutor";
+        tutor.onmouseover = hoverSubj;
+        tutor.onmouseout = unhoverSubj;
+//        sub.style.backgroundImage = "url('"+imgLink+"')"
+        var tutorImg = document.createElement("img");
+        tutorImg.className = "tutorImage";
+        tutorImg.src = imgLink;
+        name.className = "tutorTitle";
+        name.innerHTML = tutors[tut];
+        tutor.appendChild(tutorImg);
+        tutor.appendChild(name);
+        document.getElementsByClassName("tile")[2].appendChild(tutor);
+    }
 }
