@@ -3,20 +3,33 @@ var prlx = {
     elem: false, //initialized onload
     images: ["meeting.jpg","desk.jpg"]
 }
+var fullSubjects = ["English","Maths","Modern History","Ancient History","Extension History","IPT","Software","Physics","Legal Studies","Business Studies"];
+var subjectTutors = [["Aidan","Will"],["Aidan","Will","Eddie","Hayden"],["Eddie","Aidan","Will"],["Will"],["Will","Eddie"],["Hayden","Eddie"],["Hayden"],["Hayden"],["Aidan"],["Aidan"]];
 var screenSizes = [400,703];
 var currentSize = -1;
 var maxSizes = 5;
 var subjects = ["Maths","English","Business","IPT"];
 var tutors = ["Aidan", "Will", "Eddie", "Hayden"];
-function init(){
+function init(page){
     prlx.elem = document.getElementById("parallax");
     updateSize();
+    
+    switch(page){
+        case "main":
+            generateSubjects();
+            generateTutors();
+            break;
+            
+        case "subjects":
+            generateFullSubjects();
+        break;
+    }
     ui();
-    generateSubjects();
-    generateTutors();
 }
 function sendRequest(){
     $("#enquire").dialog("close");
+    var data = $("#enquire form").serialize();
+    sendEmail(data);
 }
 function openEnquiry(){
     $("#enquire").dialog("open");
@@ -39,6 +52,9 @@ function ui(){
         event.preventDefault();
         sendRequest();
     }); 
+    $(".accordion").accordion({
+        collapsible: true
+    });
 }
 function parallax(event){
     if(event.currentTarget === event.target){
@@ -82,6 +98,8 @@ function generateSubjects(){
                 <div class="subjTitle">Maths</div>
             </div>*/
     for(var subj = 0; subj < subjects.length; subj++){
+        var link = document.createElement("a");
+        link.href = "subjects.html";
         var sub = document.createElement("div");
         var imgLink = "images/"+subjects[subj].toLowerCase()+".png";
         var subTitle = document.createElement("div");
@@ -96,7 +114,8 @@ function generateSubjects(){
         subTitle.innerHTML = subjects[subj];
         sub.appendChild(subImg);
         sub.appendChild(subTitle);
-        document.getElementsByClassName("tile")[1].appendChild(sub);
+        link.appendChild(sub)
+        document.getElementsByClassName("tile")[1].appendChild(link);
     }
 }
 //Credit to https://stackoverflow.com/questions/20082283/animate-css-blur-filter-in-jquery
@@ -173,6 +192,8 @@ function generateTutors(){ //Same code as generateSubjects
                 <div class="subjTitle">Maths</div>
             </div>*/
     for(var tut = 0; tut < subjects.length; tut++){
+        var link = document.createElement("a");
+        link.href = "tutors.html#"+tutors[tut].toLowerCase();
         var tutor = document.createElement("div");
         var imgLink = "images/"+tutors[tut].toLowerCase()+".jpg";
         var name = document.createElement("div");
@@ -187,6 +208,75 @@ function generateTutors(){ //Same code as generateSubjects
         name.innerHTML = tutors[tut];
         tutor.appendChild(tutorImg);
         tutor.appendChild(name);
-        document.getElementsByClassName("tile")[2].appendChild(tutor);
+        link.appendChild(tutor)
+        document.getElementsByClassName("tile")[2].appendChild(link);
     }
+}
+function generateFullSubjects(){
+    var targ = document.getElementsByClassName("accordionHolder")[0];
+    var numSubs = fullSubjects.length;
+    var numColumns = 3;//Math.round(fullSubjects.length / 5)
+    var perCol = Math.round(numSubs/numColumns);
+    for(var sub = 0; sub < numSubs; sub++){
+        var subHead = document.createElement("h3");
+        subHead.id = fullSubjects[sub];
+        subHead.innerHTML = fullSubjects[sub];
+        var subCont = document.createElement("div");
+        subCont.className = "subCont";
+        var h3 = document.createElement("h3");
+        h3.innerHTML = "Our Tutors:";
+        subCont.appendChild(h3);
+        for(var x = 0; x < subjectTutors[sub].length; x++){
+            var link = document.createElement("a");
+            link.href = "tutors.html#"+subjectTutors[sub][x].toLowerCase();
+            var tutName = subjectTutors[sub][x];
+            var tutor = document.createElement("div");
+            var imgLink = "images/"+tutName.toLowerCase()+".jpg";
+            var name = document.createElement("div");
+            tutor.className = "miniTutor";
+            //tutor.onmouseover = hoverSubj;
+            //tutor.onmouseout = unhoverSubj;
+    //        sub.style.backgroundImage = "url('"+imgLink+"')"
+            var tutorImg = document.createElement("img");
+            tutorImg.className = "miniTutorImage";
+            tutorImg.src = imgLink;
+            name.className = "miniTutorTitle";
+            name.innerHTML = tutName;
+            tutor.appendChild(tutorImg);
+            tutor.appendChild(name);
+            link.appendChild(tutor);
+            subCont.appendChild(link);
+        }
+        var colNum = Math.floor(sub/perCol);
+        if(colNum > numColumns-1){
+            colNum = numColumns-1;
+        }
+//        targ.children[colNum].appendChild(subHead);
+//        targ.children[colNum].appendChild(subCont);
+        targ.appendChild(subHead);
+        targ.appendChild(subCont);
+    }
+}
+function req(type,directory,callback,data){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            callback(xhttp);
+       }
+    };
+    var useCallback = true;
+    if(callback === undefined){
+        useCallback = false;
+    }
+    xhttp.open(type, directory, useCallback);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    if(data === undefined){
+        data = "";
+    }
+    xhttp.send(data); 
+}
+function sendEmail(data) {
+    req("POST","/request",function(xhttp){
+        console.log(xhttp.responseText);
+    },data);
 }

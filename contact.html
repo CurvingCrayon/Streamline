@@ -5,19 +5,19 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="jquery/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="subjects.css">
     <script src="jquery-3.3.1.min.js"></script>
     <script src="mobileCheck.js"></script>
     <script src="jquery/jquery-ui.min.js"></script>
     <script src="parsley.min.js"></script>
     <script src="script.js"></script>
 </head>
-<body onload="init('main');" onresize="resize();">
-    
+<body onload="init('tutors');" onresize="resize(event);">
+<!--   Parallax background -->
     <div id="parallax">
         <img id="parImg" src="images/meeting.jpg" />
     </div>
-    
+<!--    Begin content-->
     <div id="content" onscroll="parallax(event);">
         <div id="header">
             <a class="link" href="index.html"><div>
@@ -36,35 +36,17 @@
                 <h2 id="makeEnquiry" class="vCent">MAKE AN ENQUIRY</h2>
             </div>
         </div>
-        
+
         <div id="mainTile" class="tile">
-            <div id="logo" class="vCent" data-show="2">
-                <img src="images/logo.jpg" />
-            </div>
-            <div id="infoTable" class="vCent">
+            <div id="titleTable" class="vCent">
                 <div id="phrase">
-                    <h1>For students. By students.</h1>
+                    <h1>Under development.</h1>
                 </div>
-                <div id="contact">
-                    <h3>Contact us at tutoring.streamline@gmail.com</h3>
+                <div id=subPhrase>
+                    <h3>This page is under development. Contact us at tutoring.streamline@gmail.com</h3>
                 </div>
             </div>
-            
-        </div>
-        <div class="tile brown noOverflow">
-            <h2 class="tileHead">Quality tutoring, without the pricetag.</h2>
-        </div>
-        <div class="tile noOverflow">
-            <h2 class="opaqueTileHead orange brownText">Our Tutors</h2>
-        </div>
-        <div id="enquire" title="Make An Enquiry">
-            <form>
-                <input type="text" placeholder="Name" id="reqName" class="text ui-widget-content ui-corner-all"/>
-                <input type="text" placeholder="E-mail" id="reqEmail" class="text ui-widget-content ui-corner-all" />
-                <textarea id="reqText" class="text ui-widget-content ui-corner-all"></textarea>
-            </form>
         </div>
     </div>
-    
 </body>
 </html>

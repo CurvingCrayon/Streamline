@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="jquery/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="subjects.css">
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="mobileCheck.js"></script>
+    <script src="jquery/jquery-ui.min.js"></script>
+    <script src="parsley.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body onload="init('tutors');" onresize="resize(event);">
+<!--   Parallax background -->
+    <div id="parallax">
+        <img id="parImg" src="images/meeting.jpg" />
+    </div>
+<!--    Begin content-->
+    <div id="content" onscroll="parallax(event);">
+        <div id="header">
+            <a class="link" href="index.html"><div>
+                <h2 class="vCent">Home</h2>
+            </div></a>
+            <a class="link" href="contact.html"><div>
+                <h2 class="vCent">Contact Us</h2>
+            </div></a>
+            <a class="link" href="subjects.html"><div>
+                <h2 class="vCent">Subjects</h2>
+            </div></a>
+            <a class="link" href="tutors.html"><div>
+                <h2 class="vCent">Our Tutors</h2>
+            </div></a>
+            <div onclick="openEnquiry();" id="enquiry"  data-show="1">
+                <h2 id="makeEnquiry" class="vCent">MAKE AN ENQUIRY</h2>
+            </div>
+        </div>
+
+        <div id="mainTile" class="tile">
+            <div id="titleTable" class="vCent">
+                <div id="phrase">
+                    <h1>Our Tutors</h1>
+                </div>
+                <div id=subPhrase>
+                    <h3>The team behind it all.</h3>
+                </div>
+            </div>
+        </div>
+        <!--        englisb all levels, maths all levels, phsgcis , opt, sdd, modern, ancient, society, ext history, legal, business, Korean, indian-->
+        <div class="tile clear noOverflow" id="will">
+            <div class="half">
+                
+                <div class="tutorLargeImage brown">
+                    <img src="images/will.jpg" />
+                </div>
+                
+            </div>
+            <div class="half">
+                <div class="rightHolder vCent">
+                    <h2 class="halfBlack">William Jaikumar</h2>
+                    <div class="infoHolder">
+                        <p>William Jaikumar is an outstanding student turned tutor. His success throughout high school is demonstrated by his outstanding english and history results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bar"></div>
+        <div class="tile clear noOverflow" id="aidan">
+            <div class="half">
+                <div class="rightHolder vCent">
+                    <h2 class="halfBlack">Aidan Gandy</h2>
+                    <div class="infoHolder">
+                        <p>Aidan Gandy is an intelligent and friendly student who is passionate about collaboration and sharing knowledge with others. His skill and proficiency in social sciences is demonstrated by his excellent HSC marks, as well as his extra curricular knowledge of business and legal subjects.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="half">
+                <div class="tutorLargeImage brown">
+                    <img src="images/aidan.jpg" />
+                </div>
+            </div>
+        </div>
+        <div class="bar"></div>
+        <div class="tile clear noOverflow" id="eddie">
+            <div class="half">
+                
+                <div class="tutorLargeImage brown">
+                    <img src="images/eddie.jpg" />
+                </div>
+                
+            </div>
+            <div class="half">
+                <div class="rightHolder vCent">
+                    <h2 class="halfBlack">Eddie Lee</h2>
+                    <div class="infoHolder">
+                        <p>Eddie Lee is a bright and bubbly HSC graduate who is highly capable in a diverse range of subjects. His commitment and adeptness to his work is demonstrated by his ability to effectively communicate abstract ideas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bar"></div>
+        <div class="tile clear noOverflow" id="hayden">
+            <div class="half">
+                
+                <div class="rightHolder vCent">
+                    <h2 class="halfBlack">Hayden Keers</h2>
+                    <div class="infoHolder">
+                        <p>Hayden Keers is a kind and knowledgeable HSC graduate who finds joy in learning and teaching all things STEM (science technology, engineering or maths). His proficiency as a tutor is complemented by his passion for coding, electronics, and maths.</p>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="half">
+                <div class="tutorLargeImage brown">
+                    <img src="images/hayden.jpg" />
+                </div>
+            </div>
+        </div>
+<!--        Enquiry box-->
+        <div id="enquire" title="Make An Enquiry">
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" name="name" placeholder="(Optional)" id="reqName" class="text ui-widget-content ui-corner-all"/>
+                <label for="email">Contact:</label>
+                <input type="text" placeholder="E-mail or phone" id="reqEmail" name="email" class="text ui-widget-content ui-corner-all" />
+                <label for="text">Enquiry:</label>
+                <textarea id="reqText" name="text" class="text ui-widget-content ui-corner-all"></textarea>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

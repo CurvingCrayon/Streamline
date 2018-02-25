@@ -4,6 +4,7 @@ body{
     color: #E89B5C;
     font-family: "Nunito", Helvetica, Arial, sans-serif;
     font-weight: 400;
+    overflow:  hidden;
 }
 html{
     height: 100%;
@@ -43,7 +44,7 @@ html{
     margin-left: 5%;
     padding-top: 20px;
 }
-#phrase, #contact{
+#phrase, #contact, #subPhrase{
     background-color: rgba(0,0,0,0.65);
     border-radius: 3px;
     color: #E89B5C;
@@ -53,10 +54,11 @@ html{
 #phrase{
     font-size: 2vw;
 }
-#phrase h1, #contact h3{
+#phrase h1, #contact h3, #subPhrase h3{
     font-weight: 400;
     margin: 0;
 }
+
 #contact{
     float: right;
     max-width: 85%;
@@ -90,8 +92,8 @@ html{
     width: 80%;
     text-align: center;
     padding: 15px 0 15px 0;
-    margin: 0 0 0 10%;
     border-bottom: 1px solid #E89B5C;
+    margin: 0 0 30px 10%;
 }
 .opaqueTileHead{
     width: 60%;
@@ -118,6 +120,9 @@ html{
 a, a:active, a:hover{
     text-decoration: none;
     color: inherit;
+}
+#enquire{
+    display: none;
 }
 .link, #enquiry, #contact{
     height: 100%;
@@ -219,4 +224,140 @@ a, a:active, a:hover{
     margin-top: -3vw;
     font-size: 2vw;
     background-color: #3F292B;
+}
+#subPhrase{
+    float: left;
+    max-width: 85%;
+    padding: 0 5px 3px 5px;
+}
+#titleTable{
+    display: inline-block;
+    margin-left: 5%;
+    padding-top: 20px;
+    float: left;
+}   
+.leftTileHead{
+    padding: 15px 100px 15px 20px;
+    border-bottom: 1px solid #E89B5C;
+    margin: 0;
+    display: table;
+}
+.large{
+    font-size: 30px;
+}
+.subjects{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 0 25% 0 25%;
+    overflow-y: auto;
+    min-height: 150px;
+}
+.squish{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.fill{
+    flex: 1 1 auto;
+}
+.solid{
+    flex: 0 1 auto;
+}
+.miniTutor{
+    width: 5vw;
+    height: 5vw;
+    display: inline-block;
+/*    border-radius: 100000000px;*/
+    box-shadow: 0 0 10px black;
+    background-size: cover;
+    overflow: hidden;
+    cursor: pointer;
+    vertical-align: top;
+    margin: 0 1vw 0 1vw;
+    background-color:  #3F292B;
+}
+.miniTutorImage{
+    width: 90%;
+    margin-top: 5%;
+    box-shadow: 0 0 5px black;
+}
+.miniTutorTitle{
+    width: 100%;
+    position: relative;
+    margin-top: -3vw;
+    font-size: 1vw;
+    background-color: #3F292B;
+    color: #E89B5C;
+}
+.subjects h3{
+    margin: 0 0 10px 0;
+    display: table;
+    width: auto;
+    text-align: center;
+}
+.subCont{
+    overflow-x: auto;
+}
+.tutorInfo{
+/*    width: 100%;*/
+}
+.clear{
+    background: none;
+}
+.half{
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    margin-right: -5px;
+    vertical-align: top;
+    float: left;
+}
+.half h2{
+    background-color: rgba(0,0,0,0.65);
+    display: table;
+    margin: 0 auto 10px auto;
+    font-size: 30px;
+    padding: 10px 30px 10px 30px;
+    border-radius: 3px;
+}
+.infoHolder{
+    background-color: rgba(0,0,0,0.65);
+    border-radius: 3px;
+    width: 80%;
+    margin-left: 10%;
+    text-align: left;
+}
+.half p{
+    padding: 10px;
+}
+.tutorLargeImage{
+    height: 90%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 5%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.tutorLargeImage img{
+    height: 100%;
+}
+.bar{
+    height: 20%;
+    width: 100%;
+}
+form label{
+    display: block;
+    font-weight: 600;
+}
+form input{
+    margin-bottom: 5px;
+    display: block;
+}
+textarea:focus, input:focus{
+    outline: none;
+    border-color: #E89B5C;
 }
