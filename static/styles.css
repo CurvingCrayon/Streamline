@@ -20,7 +20,7 @@ html{
     height: 100%;
     width: 100%;
     position: relative;
-    top: -100%;
+/*    top: -100%;*/
     overflow-y: auto;
 }
 #logo{
@@ -79,10 +79,12 @@ html{
 #parallax{
     height: 100%;
     width: 100%;
+    margin-bottom: -100vh;
     overflow: hidden;
     z-index: 0;
 }
 #parImg{
+    width: 100%;
     max-width:100%;
 }
 .white{
@@ -227,7 +229,7 @@ a, a:active, a:hover{
 }
 #subPhrase{
     float: left;
-    max-width: 85%;
+/*    max-width: 85%;*/
     padding: 0 5px 3px 5px;
 }
 #titleTable{
@@ -360,4 +362,49 @@ form input{
 textarea:focus, input:focus{
     outline: none;
     border-color: #E89B5C;
+}
+#credits h2{
+    text-align: center;
+    margin: 0;
+    padding: 20px 0 20px 0;
+    margin: 20px 0 20px 0;
+    box-shadow: 0 0 5px black;
+}
+#credits h3{
+    font-weight: 400;
+    margin-left: 40px;
+    border-radius: 3px;
+    margin-left: 20px;
+}
+#credits h3, #credits a{
+    display: inline-block;
+    vertical-align: top;
+    background-color: rgba(0,0,0,0.65);
+}
+#credits a{
+    target: "_blank";
+    font-weight: 600;
+}
+#credits img{
+    max-width: 40%;
+    margin-left: 5%;
+    display: inline-block;
+}
+#footer{
+    background-color: #1E1715;
+    height: 40px;
+    box-shadow: inset 0px 17px 20px -20px orange;
+    padding: 20px;
+    text-align: center;
+}
+#footer p{
+    margin: 0;
+    font-size: 12px;
+}
+.spacer{
+    height: 20%;
+}
+#reqText{
+    width: 90%;
+    height: 100px;
 }

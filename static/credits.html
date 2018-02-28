@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="jquery/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="subjects.css">
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="mobileCheck.js"></script>
+    <script src="jquery/jquery-ui.min.js"></script>
+    <script src="parsley.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body onload="init('credits');" onresize="resize(event);">
+    <!--   Parallax background -->
+    <div id="parallax">
+        <img id="parImg" src="images/desk.jpg" />
+    </div>
+<!--    Begin content-->
+    <div id="content" onscroll="parallax(event);">
+        <div id="header">
+            <a class="link" href="index.html"><div>
+                <h2 class="vCent">Home</h2>
+            </div></a>
+            <a class="link" href="contact.html"><div>
+                <h2 class="vCent">Contact Us</h2>
+            </div></a>
+            <a class="link" href="subjects.html"><div>
+                <h2 class="vCent">Subjects</h2>
+            </div></a>
+            <a class="link" href="tutors.html"><div>
+                <h2 class="vCent">Our Tutors</h2>
+            </div></a>
+            <div onclick="openEnquiry();" id="enquiry"  data-show="1">
+                <h2 id="makeEnquiry" class="vCent">MAKE AN ENQUIRY</h2>
+            </div>
+        </div>
+
+        <div id="mainTile" class="tile">
+            <div id="titleTable" class="vCent">
+                <div id="phrase">
+                    <h1>Credits</h1>
+                </div>
+                <div id=subPhrase>
+                    <h3>Giving credit where credit is due.</h3>
+                </div>
+            </div>
+        </div>
+        <!--        englisb all levels, maths all levels, phsgcis , opt, sdd, modern, ancient, society, ext history, legal, business, Korean, indian-->
+        <div id="credits">
+            <h2 class="brown">Images</h2>
+            <img src="images/desk.jpg" />
+            <a target="_blank">https://www.pexels.com/photo/desk-office-workspace-collaboration-7092/</a>
+            <img src="images/meeting.jpg" />
+            <a target="_blank">https://www.pexels.com/photo/people-coffee-meeting-team-7096/</a>
+            <img src="images/business.png" /><h3>Icon made by Vectors Market from www.flaticon.com </h3><br/>
+            <img src="images/ipt.png" /><h3>Icon made by Icon Pond from www.flaticon.com </h3><br/>
+            <img src="images/maths.png" /><h3>Icon made by Icon Pond from www.flaticon.com </h3><br/>
+            <img src="images/english.png" /><h3>Icon made by Icon Pond from www.flaticon.com </h3>
+            <h2 class="brown">Code</h2>
+            <h3>Fonts by <a href="http://fonts.google.com">Google Fonts</a></h3><br/>
+            <h3>This site is powered by <a href="http://jquery.com">jQuery</a> and <a href="http://jquery.com/ui">jQuery UI</a></h3><br/>
+            <h3>This site uses <a href="http://nodemailer.com">Nodemailer</a> to send enquiries.</h3><br/>
+            <h3>This site is powered by <a href="http://nodejs.org">NodeJS</a> and uses <a href="expressjs.com">Express</a> middleware.</h3><br/>
+            <h3>This site uses <a href="http://parsley.org">Parsley</a> to validate forms.</h3><br/>
+            <h3>Site design and code by <a href="tutors.html#hayden">Hayden Keers</a>. Check out the repo here: <a href="http://github.com/curvingcrayon/streamline">Streamline</a>.</h3>
+        </div>
+        <div id="footer">
+            <p>Website design and code by Hayden Keers 2018</p><p><a href="credits.html">Credits</a> | <a href="http://github.com/curvingcrayon/streamline">Repo</a></p>
+        </div>
+<!--        Enquiry box-->
+        <div id="enquire" title="Make An Enquiry">
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" name="name" placeholder="(Optional)" id="reqName" class="text ui-widget-content ui-corner-all"/>
+                <label for="email">Contact:</label>
+                <input type="text" placeholder="E-mail or phone" id="reqEmail" name="email" class="text ui-widget-content ui-corner-all" />
+                <label for="text">Enquiry:</label>
+                <textarea id="reqText" name="text" class="text ui-widget-content ui-corner-all"></textarea>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

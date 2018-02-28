@@ -15,13 +15,17 @@ function init(page){
     updateSize();
     
     switch(page){
-        case "main":
+        case "index":
             generateSubjects();
             generateTutors();
             break;
             
         case "subjects":
             generateFullSubjects();
+        break;
+            
+        case "tutors":
+            
         break;
     }
     ui();
