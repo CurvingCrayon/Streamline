@@ -16,9 +16,9 @@
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
     <link rel="manifest" href="images/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#E89B5C">
     <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#E89B5C">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="jquery/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="static/styles.css">
@@ -27,11 +27,19 @@
     <script src="jquery/jquery-ui.min.js"></script>
     <script src="static/parsley.min.js"></script>
     <script src="static/script.js"></script>
+    <title>{{title}}</title>
 </head>
 <body onload="init('{{name}}');" onresize="resize();">
-    
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <div id="parallax">
-        <img id="parImg" src="images/{{backgroundImg}}" />
+        <div id="parImg" data-src="images/{{backgroundImg}}" ></div>
     </div>
     
     <div id="content" onscroll="parallax(event);">
@@ -45,16 +53,16 @@
             <a class="link" href="subjects.html"><div>
                 <h2 class="vCent">Subjects</h2>
             </div></a>
-            <a class="link" href="tutors.html"><div>
-                <h2 class="vCent">Our Tutors</h2>
+            <a class="link" href="aboutus.html"><div>
+                <h2 class="vCent">About Us</h2>
             </div></a>
             <div onclick="openEnquiry();" id="enquiry"  data-show="1">
-                <h2 id="makeEnquiry" class="vCent">MAKE AN ENQUIRY</h2>
+                <h2 class="makeEnquiry vCent">MAKE AN ENQUIRY</h2>
             </div>
         </div>
         {{{content}}}
         <div id="footer">
-            <p>Website design and code by Hayden Keers 2018</p><p><a href="credits.html">Credits</a> | <a href="http://github.com/curvingcrayon/streamline">Repo</a></p>
+            <p>Website design and code by Hayden Keers 2018</p><p><a href="credits.html">Credits</a> | <a href="http://github.com/curvingcrayon/streamline">Repo</a></p><div class="fb-like" data-href="https://www.facebook.com/StreamlineTutoring/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
         </div>
         <div id="enquire" title="Make An Enquiry">
             <form>
@@ -65,6 +73,9 @@
                 <label for="text">Enquiry:</label>
                 <textarea id="reqText" name="text" class="text ui-widget-content ui-corner-all"></textarea>
             </form>
+        </div>
+        <div id="facebookMessage" title="Facebook Message Us">
+            <div class="fb-page" data-href="https://www.facebook.com/StreamlineTutoring" data-tabs="messages" data-width="300" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/StreamlineTutoring" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/StreamlineTutoring">Streamline Tutoring</a></blockquote></div>
         </div>
     </div>
     

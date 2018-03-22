@@ -1,0 +1,45 @@
+function generateFullSubjects(){
+    var targ = document.getElementsByClassName("accordionHolder")[0];
+    var numSubs = fullSubjects.length;
+    var numColumns = 3;//Math.round(fullSubjects.length / 5)
+    var perCol = Math.round(numSubs/numColumns);
+    for(var sub = 0; sub < numSubs; sub++){
+        var subHead = document.createElement("h3");
+        subHead.id = fullSubjects[sub];
+        subHead.innerHTML = fullSubjects[sub];
+        var subCont = document.createElement("div");
+        subCont.className = "subCont";
+        var h3 = document.createElement("h3");
+        h3.innerHTML = "Our Tutors:";
+        subCont.appendChild(h3);
+        for(var x = 0; x < subjectTutors[sub].length; x++){
+            var link = document.createElement("a");
+            link.href = "tutors.html#"+subjectTutors[sub][x].toLowerCase();
+            var tutName = subjectTutors[sub][x];
+            var tutor = document.createElement("div");
+            var imgLink = "images/"+tutName.toLowerCase()+".jpg";
+            var name = document.createElement("div");
+            tutor.className = "miniTutor";
+            //tutor.onmouseover = hoverSubj;
+            //tutor.onmouseout = unhoverSubj;
+    //        sub.style.backgroundImage = "url('"+imgLink+"')"
+            var tutorImg = document.createElement("img");
+            tutorImg.className = "miniTutorImage";
+            tutorImg.src = imgLink;
+            name.className = "miniTutorTitle";
+            name.innerHTML = tutName;
+            tutor.appendChild(tutorImg);
+            tutor.appendChild(name);
+            link.appendChild(tutor);
+            subCont.appendChild(link);
+        }
+        var colNum = Math.floor(sub/perCol);
+        if(colNum > numColumns-1){
+            colNum = numColumns-1;
+        }
+//        targ.children[colNum].appendChild(subHead);
+//        targ.children[colNum].appendChild(subCont);
+        targ.appendChild(subHead);
+        targ.appendChild(subCont);
+    }
+}

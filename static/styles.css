@@ -57,12 +57,18 @@ html{
 #phrase h1, #contact h3, #subPhrase h3{
     font-weight: 400;
     margin: 0;
+    
 }
-
+#contact h3{
+    text-align: right;
+}
+#subPhrase h3{
+    text-align: left;
+}
 #contact{
     float: right;
     max-width: 85%;
-    padding: 0px 5px 3px 5px;
+    padding: 0px 10px 3px 10px;
 }
 #contact h3{
     margin: 0;
@@ -85,7 +91,10 @@ html{
 }
 #parImg{
     width: 100%;
+    height: 100%;
     max-width:100%;
+    background:  url("/images/meeting.jpg");
+    background-size: cover;
 }
 .white{
     background-color: white;
@@ -95,7 +104,8 @@ html{
     text-align: center;
     padding: 15px 0 15px 0;
     border-bottom: 1px solid #E89B5C;
-    margin: 0 0 30px 10%;
+    margin: 0 0 1vh 10%;
+    background-size: 
 }
 .opaqueTileHead{
     width: 60%;
@@ -103,9 +113,6 @@ html{
     padding: 20px 0 20px 0;
     margin: 50px 0 0 20%;
     border-bottom: 1px solid #E89B5C;
-}
-.subject{
-    
 }
 #header{
     position: absolute;
@@ -149,18 +156,45 @@ a, a:active, a:hover{
     position: absolute;
     right: 15px;
 }
-#makeEnquiry{
+.makeEnquiry{
     margin: 0;
     color: #2A9D8F;
     font-size: 20px;
     border: 4px solid #2A9D8F;
     cursor: pointer;
     user-select: none;
+    display: inline-block;
+}
+.makeEnquiryOrange{
+    margin: 0;
+    color: #E89B5C;
+    font-size: 20px;
+    border: 4px solid #E89B5C;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+}
+.sendFacebook{
+    margin: 0;
+    color: #3b5998;
+    font-size: 20px;
+    border: 4px solid #3b5998;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+}
+.hover:hover{
+    border-style: dashed;
+}
+.shadow{
+    box-shadow: 0 0 10px black;
 }
 .subject{
     width: 20vw;
     height: 20vw;
-    margin: 0 2vw 0 2vw;
+    max-width: 50vh;
+    max-height: 50vh;
+    margin: 0 2vw 0vh 2vw;
     display: inline-block;
     border-radius: 100000000px;
     box-shadow: 0 0 10px black;
@@ -187,6 +221,9 @@ a, a:active, a:hover{
 .brown{
     background-color: #3F292B;
 }
+.halfTile{
+    height: 50%;
+}
 .brownText{
     color: #3F292B;
     border-color: #3F292B;
@@ -199,7 +236,7 @@ a, a:active, a:hover{
 }
 .tile{
     text-align: center;
-    overflow: auto;
+    overflow: hidden;
 }
 .noOverflow{
     overflow: hidden;
@@ -216,7 +253,7 @@ a, a:active, a:hover{
 .subjTitle{
     width: 100%;
     position: relative;
-    margin-top: -4vw;
+    margin-top: -6vw;
     background-color: white;
     font-size: 2vw;
 }
@@ -229,7 +266,7 @@ a, a:active, a:hover{
 }
 #subPhrase{
     float: left;
-/*    max-width: 85%;*/
+    max-width: 40vw;
     padding: 0 5px 3px 5px;
 }
 #titleTable{
@@ -248,9 +285,6 @@ a, a:active, a:hover{
     font-size: 30px;
 }
 .subjects{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     width: 50%;
     margin: 0 25% 0 25%;
     overflow-y: auto;
@@ -313,8 +347,11 @@ a, a:active, a:hover{
     height: 100%;
     width: 50%;
     margin-right: -5px;
-    vertical-align: top;
+/*    vertical-align: top;*/
     float: left;
+}
+.middle{
+    text-align: center;
 }
 .half h2{
     background-color: rgba(0,0,0,0.65);
@@ -407,4 +444,19 @@ textarea:focus, input:focus{
 #reqText{
     width: 90%;
     height: 100px;
+}
+.bottom{
+    display: inline-block;
+    width: 100%;
+    vertical-align: bottom;
+}
+#moreLink{
+    margin-top: 3vh;
+}
+#moreLink:hover{
+    background-color: rgba(0,0,0,0.3);
+    
+}
+.fb-spaced{
+    margin-top: 10vh;
 }

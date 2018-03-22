@@ -3,9 +3,7 @@ var serveStatic = require('serve-static');
 var express = require('express');
 var bodyParser = require("body-parser");
 var fs = require("fs");
-var ejs = require("ejs");
 var mstc = require("mustache");
-var handlebars = require("handlebars");
 var cookieParser = require("cookie-parser");
 var http = require("http");
 var pug = require("pug");
@@ -18,10 +16,8 @@ var transporter = nodemailer.createTransport({
         pass: "shrekthethirdisntcanon"
     }
 });
-fs.readFile("template.mst","utf-8",function(err,html){
-    console.log("Mustache template loaded");
-    template = html;
-})
+
+loadTemplate();
 var app = express()
 //app.set('views', './views') // specify the views directory
 .set('view engine', 'ejs') // register the template engine
@@ -32,13 +28,41 @@ function serveStatic1(path){
         serveStatic(path)(req,res,next);
     };
 }
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(cookieParser());
+app.use("/request",function(req,res,next){
+    var email = req.body.email;
+    var name = req.body.name;
+    var enquiry = req.body.text;
+    var mailOptions = {
+        from: "streamline.automated@gmail.com",
+        to: "tutoring.streamline@gmail.com",
+        subject: "Automated enquiry from streamline.com.au",
+        html: "<p>This is an automated message. <br/><b>"+name+"</b> from contact <b>"+email+"</b> has sent the following message:<br/><i>"+enquiry+"</i></p>"
+    };
+//        console.log(mailOptions);
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+});
 app.use("/",function(req,res,next){
     if(req.path.match(/\//g).length === 1 && (req.path.search("html") !== -1 || req.path ==="/")){ //Number of slashes
         var path = req.path;
+        var title;
         if(req.path === "/"){
             path = "/index.html";
+            title = "Streamline Tutoring"
         }
-        var name = req.path.split(".")[0].split("/")[1];
+            
+        var title;
+        var name = path.split(".")[0].split("/")[1];
+        if(name !== "index"){
+            title = "Streamline Tutoring - " + name;
+        }
         fs.readFile(__dirname+"/pages"+path,"utf-8", function(err,html){
             if(err){
                 console.log(err);
@@ -46,7 +70,8 @@ app.use("/",function(req,res,next){
              var rendered =  mstc.to_html(template,{
                  content: html,
                  backgroundImg: "meeting.jpg",
-                 name: name
+                 name: name,
+                 title: title
              })
             res.writeHead(200, {'Content-Type': 'text/html'})
             res.write(rendered);
@@ -59,48 +84,10 @@ app.use("/",function(req,res,next){
         }
     }
 })
+
 app.use(serveStatic1(__dirname))
-
 http.createServer(app).listen(80);
-//app.listen(80)
-//app.get('/', function (req, res) {
-//  res.render('index', { title: 'Hey', message: 'Hello there!' })
-//})
-/*
-connect()
-    
-    .use(bodyParser.urlencoded({ extended: true })) //To map request bodys correctly
-    .use(cookieParser()) //To pass cookies
-    .use(checkCredentials)
-    
-    .use(serveStatic(__dirname))
-    
-    .use("/login", function(req,res,next){  
-    
-    })
-    .use("/request",function(req,res,next){
-        var email = req.body.email;
-        var name = req.body.name;
-        var enquiry = req.body.text;
-        var mailOptions = {
-            from: "streamline.automated@gmail.com",
-            to: "tutoring.streamline@gmail.com",
-            subject: "Automated enquiry from website",
-            html: "<p>This is an automated message. <br/><b>"+name+"</b> from contact <b>"+email+"</b> has sent the following message:<br/><i>"+enquiry+"</i></p>"
-        };
-//        console.log(mailOptions);
 
-        transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
-    })
-    .listen(80, function(){
-    console.log('Server running on 80...');
-});*/
 function checkCredentials(req,res,next){
     console.log(req.cookies)
     if(req.originalUrl.search("admin") !== -1){
@@ -117,4 +104,10 @@ function checkCredentials(req,res,next){
     else{
         next();
     }
+}
+function loadTemplate(){
+    fs.readFile("template.mst","utf-8",function(err,html){
+        console.log("Mustache template loaded");
+        template = html;
+    })
 }

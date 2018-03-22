@@ -1,14 +1,15 @@
 var prlx = {
     ratio: 0.2,
     elem: false, //initialized onload
-    images: ["meeting.jpg","desk.jpg"]
+    images: ["meeting.jpg","desk.jpg"],
+    type: 1 //1 = tiles, 2 = free
 }
 var fullSubjects = ["English","Maths","Modern History","Ancient History","Extension History","IPT","Software","Physics","Legal Studies","Business Studies"];
 var subjectTutors = [["Aidan","Will"],["Aidan","Will","Eddie","Hayden"],["Eddie","Aidan","Will"],["Will"],["Will","Eddie"],["Hayden","Eddie"],["Hayden"],["Hayden"],["Aidan"],["Aidan"]];
 var screenSizes = [400,703];
 var currentSize = -1;
 var maxSizes = 5;
-var subjects = ["Maths","English","Business","IPT"];
+var subjects = ["Humanities","Social Sciences","Science and Technology"];
 var tutors = ["Aidan", "Will", "Eddie", "Hayden"];
 function init(page){
     prlx.elem = document.getElementById("parallax");
@@ -17,15 +18,19 @@ function init(page){
     switch(page){
         case "index":
             generateSubjects();
-            generateTutors();
+            //generateTutors();
             break;
             
         case "subjects":
             generateFullSubjects();
         break;
             
-        case "tutors":
+        case "aboutus":
+            prlx.type = 2;
+        break;
             
+        case "credits":
+            prlx.type = 2;
         break;
     }
     ui();
@@ -59,13 +64,29 @@ function ui(){
     $(".accordion").accordion({
         collapsible: true
     });
+    $("#facebookMessage").dialog({
+        autoOpen: false,
+        width: 350,
+        modal: true,
+    });
 }
 function parallax(event){
+    var oldScroll = event.target.scrollTop;
+    var newScroll = prlx.ratio * oldScroll;
+    var maxNewScroll = prlx.elem.scrollHeight;
     if(event.currentTarget === event.target){
-        prlx.elem.scrollTop = prlx.ratio * event.target.scrollTop;
+        prlx.elem.scrollTop = newScroll;
     }
-    var imgIndex = Math.round(Math.floor(event.target.scrollTop / window.innerHeight)/2);
-   // prlx.elem.children[0].src = "images/"+prlx.images[imgIndex];
+    
+    if(prlx.type === 1){
+        var imgIndex = Math.round(Math.floor(event.target.scrollTop / window.innerHeight)/2);
+        prlx.elem.children[0].src = "images/"+prlx.images[imgIndex];
+    }
+    else{
+        if(newScroll > maxNewScroll){
+            
+        }
+    }
 }
 function resize(){
     updateSize();
@@ -105,7 +126,7 @@ function generateSubjects(){
         var link = document.createElement("a");
         link.href = "subjects.html";
         var sub = document.createElement("div");
-        var imgLink = "images/"+subjects[subj].toLowerCase()+".png";
+        var imgLink = "images/"+subjects[subj].toLowerCase().replace(/\s/g,"_")+".png";
         var subTitle = document.createElement("div");
         sub.className = "subject";
         sub.onmouseover = hoverSubj;
@@ -121,6 +142,14 @@ function generateSubjects(){
         link.appendChild(sub)
         document.getElementsByClassName("tile")[1].appendChild(link);
     }
+    var moreLink = document.createElement("A");
+    moreLink.className = "bottom";
+    var moreText = document.createElement("h2");
+    moreText.innerHTML = "View our fill list of subjects";
+    moreLink.href="subjects.html";
+    moreLink.id ="moreLink";
+    moreLink.appendChild(moreText);
+    document.getElementsByClassName("tile")[1].appendChild(moreLink);
 }
 //Credit to https://stackoverflow.com/questions/20082283/animate-css-blur-filter-in-jquery
 function setBlur(ele, radius) {
@@ -151,7 +180,8 @@ function hoverSubj(event){
         "height": "23vw",
         "width": "23vw",
         "margin-left":"0.5vw",
-        "margin-right":"0.5vw"},
+        "margin-right":"0.5vw",
+        "margin-bottom":"-3vw"},
        {
         "duration":200
     });
@@ -173,7 +203,8 @@ function unhoverSubj(event){
         "height": "20vw",
         "width": "20vw",
         "margin-left":"2vw",
-        "margin-right":"2vw"},
+        "margin-right":"2vw",
+        "margin-bottom":"0vw"},
        {
         "duration":200
     });
@@ -181,7 +212,7 @@ function unhoverSubj(event){
     $(event.currentTarget.children[1]).stop();
     var type = event.currentTarget.className;
     $(event.currentTarget.children[1]).animate({
-        "margin-top": ((type === "subject")?"-4vw":"-3vw")
+        "margin-top": ((type === "subject")?"-6vw":"-3vw")
     },{"duration":200});
 }
 function hoverTutor(){
@@ -217,48 +248,13 @@ function generateTutors(){ //Same code as generateSubjects
     }
 }
 function generateFullSubjects(){
-    var targ = document.getElementsByClassName("accordionHolder")[0];
+    var targ = document.getElementsByClassName("subjectHolder")[0];
     var numSubs = fullSubjects.length;
-    var numColumns = 3;//Math.round(fullSubjects.length / 5)
-    var perCol = Math.round(numSubs/numColumns);
     for(var sub = 0; sub < numSubs; sub++){
         var subHead = document.createElement("h3");
         subHead.id = fullSubjects[sub];
         subHead.innerHTML = fullSubjects[sub];
-        var subCont = document.createElement("div");
-        subCont.className = "subCont";
-        var h3 = document.createElement("h3");
-        h3.innerHTML = "Our Tutors:";
-        subCont.appendChild(h3);
-        for(var x = 0; x < subjectTutors[sub].length; x++){
-            var link = document.createElement("a");
-            link.href = "tutors.html#"+subjectTutors[sub][x].toLowerCase();
-            var tutName = subjectTutors[sub][x];
-            var tutor = document.createElement("div");
-            var imgLink = "images/"+tutName.toLowerCase()+".jpg";
-            var name = document.createElement("div");
-            tutor.className = "miniTutor";
-            //tutor.onmouseover = hoverSubj;
-            //tutor.onmouseout = unhoverSubj;
-    //        sub.style.backgroundImage = "url('"+imgLink+"')"
-            var tutorImg = document.createElement("img");
-            tutorImg.className = "miniTutorImage";
-            tutorImg.src = imgLink;
-            name.className = "miniTutorTitle";
-            name.innerHTML = tutName;
-            tutor.appendChild(tutorImg);
-            tutor.appendChild(name);
-            link.appendChild(tutor);
-            subCont.appendChild(link);
-        }
-        var colNum = Math.floor(sub/perCol);
-        if(colNum > numColumns-1){
-            colNum = numColumns-1;
-        }
-//        targ.children[colNum].appendChild(subHead);
-//        targ.children[colNum].appendChild(subCont);
         targ.appendChild(subHead);
-        targ.appendChild(subCont);
     }
 }
 function req(type,directory,callback,data){
@@ -283,4 +279,7 @@ function sendEmail(data) {
     req("POST","/request",function(xhttp){
         console.log(xhttp.responseText);
     },data);
+}
+function openFacebook(){
+    $("#facebookMessage").dialog("open");
 }
