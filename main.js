@@ -86,7 +86,7 @@ app.use("/",function(req,res,next){
 })
 
 app.use(serveStatic1(__dirname))
-http.createServer(app).listen(80);
+http.createServer(app).listen(process.env.PORT || 80);
 
 function checkCredentials(req,res,next){
     console.log(req.cookies)
